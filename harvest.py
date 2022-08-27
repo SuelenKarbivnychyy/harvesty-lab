@@ -4,12 +4,7 @@
 
 # import sys 
 
-with open("harvest_log.txt") as opened_file: 
 
-    for line in opened_file:
-        melon_information = line.rstrip()       
-        melon_information = melon_information.replace("Shape", "").replace("Color", "").replace("Type", "").replace("Harvested By", "").replace("#", "")
-        shape, color, melon_type, harvested_by, harvested_from = melon_information
 
 class MelonType:
     """A species of melon at a melon farm."""
@@ -96,6 +91,9 @@ def make_melon_type_lookup(melon_types):
 melon_types = make_melon_types() # use the variable on 89 and 90
 # print(print_pairing_info(make_melon_types()))
 melon_by_id = make_melon_type_lookup(melon_types)
+print(melon_by_id)
+
+
 
 ############
 # Part 2   #
@@ -104,9 +102,6 @@ melon_by_id = make_melon_type_lookup(melon_types)
 
 class Melon:
     """A melon in a melon harvest."""
-
-    # Fill in the rest
-    # Needs __init__ and is_sellable methods
 
     def __init__(self, melon_type, shape_rating, color_rating, harvested_from, harvested_by):
         self.melon_type = melon_type
@@ -164,3 +159,21 @@ def get_sellability_report(melons):
 
 melons = make_melons(melon_types)   
 print(get_sellability_report(melons))
+
+
+with open("harvest_log.txt") as opened_file: 
+
+    for line in opened_file:
+        melon_information = line.rstrip()       
+        melon_information = melon_information.replace("Shape ", "").replace("Color ", "").replace("Type ", "").replace("Harvested By ", "").replace("Field # ", "")
+        melon_inf_list = melon_information.split(" ")       
+        # shape, color, melon_type, harvested_by, harvested_from = melon_information
+        shape = melon_inf_list[0]
+        color = melon_inf_list[1]
+        melon_type = melon_inf_list[2]
+        harvested_by = melon_inf_list[3]
+        harvested_from = melon_inf_list[4]
+        new_melon = Melon(melon_type, shape, color, harvested_from, harvested_by)
+        # print(new_melon.melon_type)
+
+        # print(melon_inf_list)
