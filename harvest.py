@@ -2,6 +2,14 @@
 # Part 1   #
 ############
 
+# import sys 
+
+with open("harvest_log.txt") as opened_file: 
+
+    for line in opened_file:
+        melon_information = line.rstrip()       
+        melon_information = melon_information.replace("Shape", "").replace("Color", "").replace("Type", "").replace("Harvested By", "").replace("#", "")
+        shape, color, melon_type, harvested_by, harvested_from = melon_information
 
 class MelonType:
     """A species of melon at a melon farm."""
